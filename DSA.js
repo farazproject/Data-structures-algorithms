@@ -188,3 +188,72 @@ function validAnagram(first, second) {
 }
 validAnagram("total", "latot");
 //////
+
+// multiple pointers
+// creating pointers or values that corresponds to an index or position
+//and move towards the beginning, end or middle based on a certain conditon.
+
+//very efficient for solving problems with  minimal space complexity as well.
+
+//Example: wrtie a function called sumZero which accepts a sorted array of integers.
+//the function should find the first pair where the sum is zero.
+// return an arry that includes both values that sum to zero
+//or undefined if a pair does not exist.
+
+//example :
+// sumZero([-3,-2,-1,0,1,2,3]) // [-3,3]
+//sumZero([-2,0,1,3]) // undefined
+
+//solution:
+//write a function name sumZero which takes an array as argument.
+function sumZero(arr) {
+  //for loop to get the value from zero index that is i = 0;
+  for (let i = 0; i < arr.length; i++) {
+    //now loop over the array gain from index 1 of array until the end.
+    for (let j = i + 1; j < arr.length; j++) {
+      //console.log(i,j)
+      //now if  sum the first loop index value to all the values coming from 2nd loop J is === 0
+      if (arr[i] + arr[j] === 0) {
+        //then return the new array with index of first loop and matching index of 2nd loop
+        return [arr[i], arr[j]];
+      }
+    }
+  }
+}
+
+sumZero([-3, -2, -1, 0, 1, 2, 3]);
+
+
+
+// refactor  code 
+
+//write a sumZero function
+//assign the input arry of left side at index 0
+// assign the last index on right side of array
+//while left side is less then right side
+//create sum veriable of arry's left + array's right side
+//if sum is equal to 0 
+//return array[left, which is index, right],
+//if sum is greater than 0 
+//then decrease 1 from sum 
+//else add 1 to sum
+
+function sumZero(arr){
+  let firstIndex = 0;
+  let lastIndex = arr.length - 1;
+  while(firstIndex < lastIndex){
+      let sum = arr[lastIndex] + arr[firstIndex];
+      if (sum === 0){
+          return [ arr[lastIndex], arr[firstIndex]]
+      }else if (sum > 0){
+          lastIndex--;
+      }else {
+          firstIndex++;
+      }
+      
+  }
+}
+let arr1 = [-3,-2,-1,0,1,2,3]
+sumZero(arr1);
+
+//////////////////////////////////////////
