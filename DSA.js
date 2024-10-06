@@ -223,37 +223,104 @@ function sumZero(arr) {
 
 sumZero([-3, -2, -1, 0, 1, 2, 3]);
 
-
-
-// refactor  code 
+// refactor  code
 
 //write a sumZero function
 //assign the input arry of left side at index 0
 // assign the last index on right side of array
 //while left side is less then right side
 //create sum veriable of arry's left + array's right side
-//if sum is equal to 0 
+//if sum is equal to 0
 //return array[left, which is index, right],
-//if sum is greater than 0 
-//then decrease 1 from sum 
+//if sum is greater than 0
+//then decrease 1 from sum
 //else add 1 to sum
 
-function sumZero(arr){
+function sumZero(arr) {
   let firstIndex = 0;
   let lastIndex = arr.length - 1;
-  while(firstIndex < lastIndex){
-      let sum = arr[lastIndex] + arr[firstIndex];
-      if (sum === 0){
-          return [ arr[lastIndex], arr[firstIndex]]
-      }else if (sum > 0){
-          lastIndex--;
-      }else {
-          firstIndex++;
-      }
-      
+  while (firstIndex < lastIndex) {
+    let sum = arr[lastIndex] + arr[firstIndex];
+    if (sum === 0) {
+      return [arr[lastIndex], arr[firstIndex]];
+    } else if (sum > 0) {
+      lastIndex--;
+    } else {
+      firstIndex++;
+    }
   }
 }
-let arr1 = [-3,-2,-1,0,1,2,3]
+let arr1 = [-3, -2, -1, 0, 1, 2, 3];
 sumZero(arr1);
 
 //////////////////////////////////////////
+
+function countUniqueValues(arr) {
+  // add whatever parameters you deem necessary - good luck!
+  if (arr.length === 0) return 0;
+  let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[i] !== arr[j]) {
+      i++;
+      arr[i] = arr[j];
+    }
+  }
+  return i + 1;
+}
+
+countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]); // 7
+
+///////////////////////////////
+
+/// Sliding widow ----------------------------------------------------------------
+// sliding window 
+// write a function maxSubarraySum which accepts array of integers and a number called n
+// the function should calculate the max sum of n consecutive elements in that array!
+
+function maxSubarraySum(arr, n){
+  //do somthing.
+  let maxSum = -Infinity;
+  for(let i = 0; i <arr.length -n +1; i++){
+      let tempSum = 0;
+      for(let j = 0 ; j < n ; j++){
+          tempSum = tempSum + arr[i + j]
+        }
+      console.log(maxSum, tempSum)
+      if (tempSum > maxSum){
+      maxSum = tempSum
+  }
+   }
+  
+  return maxSum;
+}
+maxSubarraySum([1,2,5,8,4,7,4,7,9,3,5,7,8], 3)
+
+
+// sliding window Refactored Code
+// write a function maxSubarraySum which accepts array of integers and a number called n
+// the function should calculate the max sum of n consecutive elements in that array!
+
+function maxSubarraySum(arr, num) {
+    
+  if (arr.length == 0){ return null;}
+  
+  let maxSum = 0;
+  let tempSum = 0;
+  for(let i = 0; i < num; i++){
+      maxSum = maxSum + arr[i]
+  }
+  tempSum = maxSum;
+  for(let i = num; i < arr.length; i++){
+      tempSum = tempSum - arr[i - num] + arr[i];
+      //first iteration
+      // tempSum = 8 - arr( 3 - 3) + arr(3)
+      //tempSum = 8 - arr(0) ki value + arr(3) index ki value. 
+      console.log(maxSum,tempSum)
+      maxSum = Math.max(tempSum,maxSum)
+      }
+   
+  return maxSum
+}
+
+maxSubarraySum([1,2,5,8,4,7,4,7,9,3,5,7,8], 3)
+///////////////////////
