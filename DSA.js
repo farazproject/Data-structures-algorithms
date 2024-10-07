@@ -324,3 +324,54 @@ function maxSubarraySum(arr, num) {
 
 maxSubarraySum([1,2,5,8,4,7,4,7,9,3,5,7,8], 3)
 ///////////////////////
+
+//Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
+
+//Your solution MUST have the following complexities:
+
+//Time: O(N)
+
+//Sample Input: sameFrequency(182,281) // true
+
+
+
+function sameFrequency(value1, value2){
+  let string1 = value1.toString();
+  let string2 = value2.toString();
+
+  if (string1.length !== string2.length) return false;
+  
+  //create obj to return later
+  let lookup = {}
+  //loop over first string
+  for(let i=0; i <string1.length; i++){
+     //add frist str values to obj , check if obj[letter] is zero then set to 1; or has letter then obj +=;  
+      let letter = string1[i];
+      //console.log(letter)
+      lookup[letter] ? lookup[letter] +=1 : lookup[letter] = 1;
+      //console.log(lookup)
+  }
+ 
+
+  //now loop over 2nd string,
+  for (let i = 0; i < string2.length; i++){
+     //check if obj[letter of 2nd string] is not there then return false 
+          let letter2 = string2[i]
+      if(!(lookup[letter2])) {
+          return false;
+      }
+      else {
+          //else minus that obj[letter of 2nd string] from obj
+          lookup[letter2] -=1;
+      }
+  }
+  
+  
+  //return true;
+  return true
+  
+}
+
+sameFrequency(182,281)
+
+////////////////////////////////////////////////////////////////////
